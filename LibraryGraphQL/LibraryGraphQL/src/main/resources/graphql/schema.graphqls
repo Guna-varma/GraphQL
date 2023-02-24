@@ -1,0 +1,88 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query{
+
+    getAllCity:[City]
+    getAllLibrary:[Library]
+    getAllUser:[User]
+
+    getCityById(id:Int):City
+    getLibraryById(id:Int):Library
+    getUserById(id:Int):User
+
+    countCity: Int
+    countLibrary: Int
+    countUser: Int
+
+}
+
+
+type Mutation{
+
+    addCity(cityInput: CityInput):City
+    addLibrary(libraryInput: LibraryInput):Library
+    addUser(userInput: UserInput): User
+
+    updateCity(id:ID!, name: String):City
+    updateLibrary(id:ID!, name: String):Library
+    updateUser(id:ID!, name: String):User
+
+    deleteCity(id:ID!):Boolean
+    deleteLibrary(id:ID!):Boolean
+    deleteUser(id:ID!):Boolean
+
+}
+
+type City{
+    id:ID
+    name:String
+    libraryList:[Library]
+}
+
+type Library{
+    id:ID
+    name: String
+    cityId:Int
+    userList:[User]
+}
+
+type User{
+    id:ID
+    name: String
+    libId: Int
+}
+
+input CityInput{
+    id: Int
+    name:String
+}
+
+input LibraryInput{
+    id:Int
+    name: String
+    cityId: Int
+}
+
+input UserInput{
+    id:Int
+    name: String
+    libId: Int
+}
+
+input UpdateCityInput{
+    id: Int
+    name:String
+}
+
+input UpdateLibraryInput{
+    id:Int
+    name: String
+}
+
+input UpdateUserInput{
+    id:Int
+    name: String
+}
